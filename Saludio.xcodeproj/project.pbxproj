@@ -15,6 +15,11 @@
 		EC80B8422C0CDAFE00377618 /* SaludioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B8412C0CDAFE00377618 /* SaludioTests.swift */; };
 		EC80B84C2C0CDAFE00377618 /* SaludioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B84B2C0CDAFE00377618 /* SaludioUITests.swift */; };
 		EC80B84E2C0CDAFE00377618 /* SaludioUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B84D2C0CDAFE00377618 /* SaludioUITestsLaunchTests.swift */; };
+		ECD091DE2C0D91AE0030F4D5 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091DD2C0D91AE0030F4D5 /* HealthKitManager.swift */; };
+		ECD091E02C0D94E50030F4D5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091DF2C0D94E50030F4D5 /* HomeView.swift */; };
+		ECD091E22C0D94F80030F4D5 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091E12C0D94F80030F4D5 /* ActivityView.swift */; };
+		ECD091E42C0D95090030F4D5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091E32C0D95090030F4D5 /* SettingsView.swift */; };
+		ECD091E62C0D999A0030F4D5 /* SummeryRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091E52C0D999A0030F4D5 /* SummeryRingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,11 @@
 		EC80B84B2C0CDAFE00377618 /* SaludioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaludioUITests.swift; sourceTree = "<group>"; };
 		EC80B84D2C0CDAFE00377618 /* SaludioUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaludioUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EC80B85A2C0CDCAE00377618 /* Saludio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Saludio.entitlements; sourceTree = "<group>"; };
+		ECD091DD2C0D91AE0030F4D5 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		ECD091DF2C0D94E50030F4D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		ECD091E12C0D94F80030F4D5 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		ECD091E32C0D95090030F4D5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		ECD091E52C0D999A0030F4D5 /* SummeryRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummeryRingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +111,13 @@
 				EC80B82E2C0CDAFB00377618 /* SaludioApp.swift */,
 				EC80B8302C0CDAFB00377618 /* ContentView.swift */,
 				EC80B8322C0CDAFB00377618 /* Item.swift */,
+				ECD091DD2C0D91AE0030F4D5 /* HealthKitManager.swift */,
+				ECD091DF2C0D94E50030F4D5 /* HomeView.swift */,
+				ECD091E12C0D94F80030F4D5 /* ActivityView.swift */,
+				ECD091E32C0D95090030F4D5 /* SettingsView.swift */,
 				EC80B8342C0CDAFD00377618 /* Assets.xcassets */,
 				EC80B8362C0CDAFE00377618 /* Preview Content */,
+				ECD091E52C0D999A0030F4D5 /* SummeryRingView.swift */,
 			);
 			path = Saludio;
 			sourceTree = "<group>";
@@ -262,9 +277,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECD091E42C0D95090030F4D5 /* SettingsView.swift in Sources */,
 				EC80B8312C0CDAFB00377618 /* ContentView.swift in Sources */,
 				EC80B8332C0CDAFB00377618 /* Item.swift in Sources */,
+				ECD091DE2C0D91AE0030F4D5 /* HealthKitManager.swift in Sources */,
+				ECD091E02C0D94E50030F4D5 /* HomeView.swift in Sources */,
+				ECD091E62C0D999A0030F4D5 /* SummeryRingView.swift in Sources */,
 				EC80B82F2C0CDAFB00377618 /* SaludioApp.swift in Sources */,
+				ECD091E22C0D94F80030F4D5 /* ActivityView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

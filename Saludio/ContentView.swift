@@ -1,25 +1,29 @@
-//
-//  ContentView.swift
-//  Saludio
-//
-//  Created by Ravishka Dulshan on 2024-06-02.
-//
-
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    
-    var body: some View {
-		VStack {
-			Text("Saludio")
-				.font(.largeTitle)
+	var body: some View {
+		TabView {
+			HomeView()
+				.tabItem {
+					Image(systemName: "house.fill")
+					Text("Home")
+				}
+			ActivityView()
+				.tabItem {
+					Image(systemName: "figure.walk")
+					Text("Activity")
+				}
+			SettingsView()
+				.tabItem {
+					Image(systemName: "gearshape.fill")
+					Text("Settings")
+				}
 		}
-    }
-
-    
+	}
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+	static var previews: some View {
+		ContentView()
+	}
 }
