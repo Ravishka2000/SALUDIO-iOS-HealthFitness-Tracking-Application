@@ -61,7 +61,7 @@ struct SummeryRingView: View {
 	
 	var body: some View {
 		ZStack{
-			Circle().stroke(lineWidth: 30).foregroundColor(Color ("C1").opacity(0.2))
+			Circle().stroke(lineWidth: 20).foregroundColor(Color (BG).opacity(0.2))
 			Circle().rotation(rotationDegree)
 				.trim(from: 0, to: CGFloat(completionRate))
 				.stroke(gradientEffect, style: strokeStyle)
@@ -69,10 +69,11 @@ struct SummeryRingView: View {
 		}
 		.frame(width: WHeight, height: WHeight)
 		.overlay(alignment: .top) {
-			Image (systemName: icon).bold().offset( y: -11).font(.title2)
+			Image (systemName: icon).bold().offset( y: -7).font(.caption)
 				.foregroundColor(.black)
 		}
 	}
+	
 	var overlayCircle :some View {
 		GeometryReader { geo in
 			Circle().fill(gradientEndColor)
@@ -92,7 +93,7 @@ struct SummeryRingView: View {
 struct SummeryRingView_Previews: PreviewProvider {
 	static var previews: some View {
 		SummeryRingView(icon: "arrow.up",
-						BG: "C1", WHeight: 50, completionRate: 1.2, ringThickness: 25,
+						BG: "C1", WHeight: 50, completionRate: 1.2, ringThickness: 20,
 						colorGradient: Gradient(colors: [Color("C1"), Color("C2")]))
 	}
 }
