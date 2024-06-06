@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		EC80B82F2C0CDAFB00377618 /* SaludioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B82E2C0CDAFB00377618 /* SaludioApp.swift */; };
 		EC80B8312C0CDAFB00377618 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B8302C0CDAFB00377618 /* ContentView.swift */; };
-		EC80B8332C0CDAFB00377618 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B8322C0CDAFB00377618 /* Item.swift */; };
+		EC80B8332C0CDAFB00377618 /* HealthInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B8322C0CDAFB00377618 /* HealthInfoModel.swift */; };
 		EC80B8352C0CDAFD00377618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC80B8342C0CDAFD00377618 /* Assets.xcassets */; };
 		EC80B8382C0CDAFE00377618 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC80B8372C0CDAFE00377618 /* Preview Assets.xcassets */; };
 		EC80B8422C0CDAFE00377618 /* SaludioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B8412C0CDAFE00377618 /* SaludioTests.swift */; };
@@ -43,7 +43,7 @@
 		EC80B82B2C0CDAFB00377618 /* Saludio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Saludio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC80B82E2C0CDAFB00377618 /* SaludioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaludioApp.swift; sourceTree = "<group>"; };
 		EC80B8302C0CDAFB00377618 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EC80B8322C0CDAFB00377618 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		EC80B8322C0CDAFB00377618 /* HealthInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthInfoModel.swift; sourceTree = "<group>"; };
 		EC80B8342C0CDAFD00377618 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC80B8372C0CDAFE00377618 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EC80B83D2C0CDAFE00377618 /* SaludioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SaludioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +110,7 @@
 				EC80B85A2C0CDCAE00377618 /* Saludio.entitlements */,
 				EC80B82E2C0CDAFB00377618 /* SaludioApp.swift */,
 				EC80B8302C0CDAFB00377618 /* ContentView.swift */,
-				EC80B8322C0CDAFB00377618 /* Item.swift */,
+				EC80B8322C0CDAFB00377618 /* HealthInfoModel.swift */,
 				ECD091DD2C0D91AE0030F4D5 /* HealthKitManager.swift */,
 				ECD091DF2C0D94E50030F4D5 /* HomeView.swift */,
 				ECD091E12C0D94F80030F4D5 /* ActivityView.swift */,
@@ -279,7 +279,7 @@
 			files = (
 				ECD091E42C0D95090030F4D5 /* SettingsView.swift in Sources */,
 				EC80B8312C0CDAFB00377618 /* ContentView.swift in Sources */,
-				EC80B8332C0CDAFB00377618 /* Item.swift in Sources */,
+				EC80B8332C0CDAFB00377618 /* HealthInfoModel.swift in Sources */,
 				ECD091DE2C0D91AE0030F4D5 /* HealthKitManager.swift in Sources */,
 				ECD091E02C0D94E50030F4D5 /* HomeView.swift in Sources */,
 				ECD091E62C0D999A0030F4D5 /* SummeryRingView.swift in Sources */,

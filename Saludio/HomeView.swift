@@ -7,9 +7,13 @@
 
 import HealthKitUI
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
 	@ObservedObject var healthKitManager = HealthKitManager()
+	@Environment(\.modelContext) private var modelContext
+	@Query private var healthInfoList: [HealthInfoModel]
+	@State private var healthInfo = HealthInfoModel()
 	
 	@State private var steps: Double = 0.0
 	@State private var mindfulnessMinutes: Double = 0.0
@@ -36,6 +40,12 @@ struct HomeView: View {
 		dateFormatter.dateStyle = .full
 		return dateFormatter.string(from: today)
 	}()
+	
+	private func loadExistingData() {
+		if let existingHealthInfo = healthInfoList.first {
+			healthInfo = existingHealthInfo
+		}
+	}
 	
 	var body: some View {
 		NavigationStack {
@@ -76,6 +86,14 @@ struct HomeView: View {
 										.fontWeight(.bold)
 										.font(.title2)
 										.foregroundColor(Color("calories")) +
+									Text("/")
+										.fontWeight(.bold)
+										.font(.title2)
+										.foregroundColor(Color("calories")) +
+									Text(String(format: "%.1f", healthInfo.activeCaloriesGoal))
+										.fontWeight(.bold)
+										.font(.title2)
+										.foregroundColor(Color("calories")) +
 									Text("CAL")
 										.font(.footnote)
 										.fontWeight(.bold)
@@ -90,6 +108,14 @@ struct HomeView: View {
 										.fontWeight(.bold)
 										.font(.title2)
 										.foregroundColor(Color("exercise")) +
+									Text("/")
+										.fontWeight(.bold)
+										.font(.title2)
+										.foregroundColor(Color("exercise")) +
+									Text(String(format: "%.1f", healthInfo.exerciseMinutesGoal))
+										.fontWeight(.bold)
+										.font(.title2)
+										.foregroundColor(Color("exercise")) +
 									Text("MIN")
 										.font(.footnote)
 										.fontWeight(.bold)
@@ -100,6 +126,14 @@ struct HomeView: View {
 										.font(.subheadline)
 										.foregroundColor(Color.primary)
 									Text(String(format: "%.1f", standHours))
+										.fontWeight(.bold)
+										.font(.title2)
+										.foregroundColor(Color("stand")) +
+									Text("/")
+										.fontWeight(.bold)
+										.font(.title2)
+										.foregroundColor(Color("stand")) +
+									Text(String(format: "%.1f", healthInfo.standHoursGoal))
 										.fontWeight(.bold)
 										.font(.title2)
 										.foregroundColor(Color("stand")) +
@@ -155,6 +189,7 @@ struct HomeView: View {
 		}
 		.onAppear {
 			healthKitManager.requestAuthorization()
+			loadExistingData()
 		}
 		.onChange(of: healthKitManager.steps) { steps = healthKitManager.steps }
 		.onChange(of: healthKitManager.mindfulnessMinutes) { mindfulnessMinutes = healthKitManager.mindfulnessMinutes }
