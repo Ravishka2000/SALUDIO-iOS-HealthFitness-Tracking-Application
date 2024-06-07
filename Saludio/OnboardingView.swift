@@ -13,62 +13,127 @@ struct OnboardingView: View {
 	@Environment(\.modelContext) private var modelContext
 	
 	@State private var name: String = ""
-	@State private var age: String = ""
-	@State private var weight: String = ""
-	@State private var height: String = ""
+	@State private var age: Int = 18
+	@State private var weight: Double = 0.0
+	@State private var height: Double = 0.0
+	
+	@State private var isAgePickerVisible: Bool = false
 	
 	var body: some View {
-		VStack {
-			Text("Enter Your Details")
-				.font(.largeTitle)
-				.padding()
-			
-			TextField("Name", text: $name)
-				.textFieldStyle(RoundedBorderTextFieldStyle())
-				.padding()
-			
-			TextField("Age", text: $age)
-				.textFieldStyle(RoundedBorderTextFieldStyle())
-				.padding()
-				.keyboardType(.numberPad)
-			
-			TextField("Weight (kg)", text: $weight)
-				.textFieldStyle(RoundedBorderTextFieldStyle())
-				.padding()
-				.keyboardType(.decimalPad)
-			
-			TextField("Height (cm)", text: $height)
-				.textFieldStyle(RoundedBorderTextFieldStyle())
-				.padding()
-				.keyboardType(.decimalPad)
-			
-			Button(action: saveUserData) {
-				Text("Save")
-					.font(.headline)
+		ScrollView {
+			VStack {
+				ZStack {
+					Color.onboard
+						.ignoresSafeArea()
+					
+					Image("Onboarding3")
+						.resizable()
+						.aspectRatio(contentMode: .fill)
+						.frame(height: 180)
+				}
+				.cornerRadius(25)
+				
+				Text("Enter Your Details")
+					.font(.largeTitle)
+					.fontWeight(.bold)
 					.padding()
-					.background(Color.green)
-					.foregroundColor(.white)
-					.cornerRadius(10)
+				
+				VStack(alignment: .leading, spacing: 20) {
+					Group {
+						Label("Name", systemImage: "person.fill")
+							.font(.headline)
+						TextField("Enter your name", text: $name)
+							.padding()
+							.background(Color(UIColor.secondarySystemBackground))
+							.cornerRadius(10)
+						
+						Label("Age", systemImage: "calendar")
+							.font(.headline)
+						HStack {
+							Text("\(age) years")
+								.foregroundColor(.primary)
+							Spacer()
+							Button(action: {
+								isAgePickerVisible.toggle()
+							}) {
+								Image(systemName: "chevron.down")
+									.foregroundColor(.gray)
+							}
+						}
+						.padding()
+						.background(Color(UIColor.secondarySystemBackground))
+						.cornerRadius(10)
+						
+						if isAgePickerVisible {
+							Picker("Select your age", selection: $age) {
+								ForEach(10..<100) {
+									Text("\($0) years").tag($0)
+								}
+							}
+							.pickerStyle(WheelPickerStyle())
+							.frame(height: 150)
+							.clipped()
+							.background(Color(UIColor.secondarySystemBackground))
+							.cornerRadius(20)
+							.padding()
+							.transition(.opacity)
+						}
+						
+						Label("Weight (kg)", systemImage: "scalemass")
+							.font(.headline)
+						HStack {
+							TextField("Enter your weight", value: $weight, formatter: decimalFormatter)
+								.padding()
+								.background(Color(UIColor.secondarySystemBackground))
+								.cornerRadius(10)
+								.keyboardType(.decimalPad)
+							Spacer()
+							Stepper("", value: $weight, in: 30...200, step: 0.5)
+						}
+						
+						Label("Height (cm)", systemImage: "ruler.fill")
+							.font(.headline)
+						HStack {
+							TextField("Enter your height", value: $height, formatter: decimalFormatter)
+								.padding()
+								.background(Color(UIColor.secondarySystemBackground))
+								.cornerRadius(10)
+								.keyboardType(.decimalPad)
+							Spacer()
+							Stepper("", value: $height, in: 80...250, step: 0.5)
+						}
+					}
+				}
+				.padding(.horizontal)
+				
+				Spacer()
+				
+				Button(action: saveUserData) {
+					Text("Save")
+						.font(.headline)
+						.padding()
+						.frame(maxWidth: .infinity)
+						.background(Color.green)
+						.foregroundColor(.white)
+						.cornerRadius(10)
+				}
+				.padding()
 			}
+			.padding()
 		}
-		.padding()
+		.background(Color(UIColor.systemBackground))
+		.foregroundColor(Color(UIColor.label))
 	}
 	
 	private func saveUserData() {
-		guard let ageInt = Int(age),
-			  let weightDouble = Double(weight),
-			  let heightDouble = Double(height) else {
-			return
-		}
-		
 		userModel.name = name
-		userModel.age = ageInt
-		userModel.weight = weightDouble
-		userModel.height = heightDouble
+		userModel.age = age
+		userModel.weight = weight
+		userModel.height = height
 		userModel.isFirstLaunch = false
 		
 		modelContext.insert(userModel)
-		try? modelContext.save() // Ensure to save context
+		try? modelContext.save()
 		
 		if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
 			if let window = windowScene.windows.first {
@@ -76,6 +141,13 @@ struct OnboardingView: View {
 				window.makeKeyAndVisible()
 			}
 		}
+	}
+	
+	private var decimalFormatter: NumberFormatter {
+		let formatter = NumberFormatter()
+		formatter.numberStyle = .decimal
+		formatter.maximumFractionDigits = 1
+		return formatter
 	}
 }
 
