@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC66F0EC2C11E83C006B21FA /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC66F0EB2C11E83C006B21FA /* LaunchScreen.swift */; };
+		EC66F0EE2C11E850006B21FA /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC66F0ED2C11E850006B21FA /* IntroductionView.swift */; };
+		EC66F0F02C11E87C006B21FA /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC66F0EF2C11E87C006B21FA /* OnboardingView.swift */; };
+		EC66F0F22C11E894006B21FA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC66F0F12C11E894006B21FA /* UserModel.swift */; };
 		EC80B82F2C0CDAFB00377618 /* SaludioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B82E2C0CDAFB00377618 /* SaludioApp.swift */; };
 		EC80B8312C0CDAFB00377618 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B8302C0CDAFB00377618 /* ContentView.swift */; };
 		EC80B8332C0CDAFB00377618 /* HealthInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B8322C0CDAFB00377618 /* HealthInfoModel.swift */; };
@@ -40,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC66F0EB2C11E83C006B21FA /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		EC66F0ED2C11E850006B21FA /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
+		EC66F0EF2C11E87C006B21FA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		EC66F0F12C11E894006B21FA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		EC80B82B2C0CDAFB00377618 /* Saludio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Saludio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC80B82E2C0CDAFB00377618 /* SaludioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaludioApp.swift; sourceTree = "<group>"; };
 		EC80B8302C0CDAFB00377618 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,9 +123,13 @@
 				ECD091DF2C0D94E50030F4D5 /* HomeView.swift */,
 				ECD091E12C0D94F80030F4D5 /* ActivityView.swift */,
 				ECD091E32C0D95090030F4D5 /* SettingsView.swift */,
+				ECD091E52C0D999A0030F4D5 /* SummeryRingView.swift */,
 				EC80B8342C0CDAFD00377618 /* Assets.xcassets */,
 				EC80B8362C0CDAFE00377618 /* Preview Content */,
-				ECD091E52C0D999A0030F4D5 /* SummeryRingView.swift */,
+				EC66F0EB2C11E83C006B21FA /* LaunchScreen.swift */,
+				EC66F0ED2C11E850006B21FA /* IntroductionView.swift */,
+				EC66F0EF2C11E87C006B21FA /* OnboardingView.swift */,
+				EC66F0F12C11E894006B21FA /* UserModel.swift */,
 			);
 			path = Saludio;
 			sourceTree = "<group>";
@@ -279,12 +291,16 @@
 			files = (
 				ECD091E42C0D95090030F4D5 /* SettingsView.swift in Sources */,
 				EC80B8312C0CDAFB00377618 /* ContentView.swift in Sources */,
+				EC66F0EC2C11E83C006B21FA /* LaunchScreen.swift in Sources */,
+				EC66F0EE2C11E850006B21FA /* IntroductionView.swift in Sources */,
 				EC80B8332C0CDAFB00377618 /* HealthInfoModel.swift in Sources */,
 				ECD091DE2C0D91AE0030F4D5 /* HealthKitManager.swift in Sources */,
 				ECD091E02C0D94E50030F4D5 /* HomeView.swift in Sources */,
 				ECD091E62C0D999A0030F4D5 /* SummeryRingView.swift in Sources */,
 				EC80B82F2C0CDAFB00377618 /* SaludioApp.swift in Sources */,
 				ECD091E22C0D94F80030F4D5 /* ActivityView.swift in Sources */,
+				EC66F0F22C11E894006B21FA /* UserModel.swift in Sources */,
+				EC66F0F02C11E87C006B21FA /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +472,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -491,6 +508,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

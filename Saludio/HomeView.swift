@@ -210,19 +210,19 @@ struct HomeView: View {
 	}
 		
 	func completedStepPercentage() -> Double {
-		return (steps / 200)
+		return (steps / healthInfo.stepGoal)
 	}
 	
 	func burnedCaloriesPercentage() -> Double {
-		return (activeCalories / 200)
+		return (activeCalories / healthInfo.activeCaloriesGoal)
 	}
 	
 	func completedExercisePercentage() -> Double {
-		return (exerciseMinutes / 200)
+		return (exerciseMinutes / healthInfo.exerciseMinutesGoal)
 	}
 	
 	func completedStandingPercentage() -> Double {
-		return (standHours / 200)
+		return (standHours / healthInfo.standHoursGoal)
 	}
 }
 
