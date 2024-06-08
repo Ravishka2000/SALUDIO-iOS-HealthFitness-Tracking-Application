@@ -5,55 +5,55 @@
 //  Created by Ravishka Dulshan on 2024-06-03.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ActivityView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Query private var healthInfoList: [HealthInfoModel]
 	@State private var healthInfo = HealthInfoModel()
+	@State private var showSaveAlert = false
+	@State private var alertMessage = ""
 	
 	var body: some View {
 		NavigationStack {
 			ScrollView {
-				VStack(spacing: 40) {
-					VStack(spacing: 20) {
-						Image(systemName: "heart.circle.fill")
-							.resizable()
-							.aspectRatio(contentMode: .fit)
-							.frame(width: 100, height: 100)
-							.foregroundColor(.red)
-						
-						Text("Health Goals")
-							.font(.title)
-							.fontWeight(.bold)
-							.foregroundColor(.primary)
-					}
+				VStack(spacing: 30) {
+					Image("ActivityImage")
+						.resizable()
+						.aspectRatio(contentMode: .fit)
+						.frame(maxWidth: .infinity, maxHeight: 200)
+						.clipped()
+						.cornerRadius(12)
 					
-					VStack(spacing: 30) {
-						goalInputView(title: "Daily Step Goal", value: $healthInfo.stepGoal)
-						goalInputView(title: "Water Intake Goal(L)", value: $healthInfo.waterIntakeGoal)
-						goalInputView(title: "Active Calories Goal", value: $healthInfo.activeCaloriesGoal)
-						goalInputView(title: "Exercise time Goal", value: $healthInfo.exerciseMinutesGoal)
-						goalInputView(title: "Stand Hours Goal", value: $healthInfo.standHoursGoal)
+					VStack(spacing: 20) {
+						goalInputView(title: "Daily Step Goal", value: $healthInfo.stepGoal, systemImage: "figure.walk", iconColor: .orange)
+						goalInputView(title: "Water Intake Goal (L)", value: $healthInfo.waterIntakeGoal, systemImage: "drop.fill", iconColor: .blue)
+						goalInputView(title: "Active Calories Goal", value: $healthInfo.activeCaloriesGoal, systemImage: "flame.fill", iconColor: .red)
+						goalInputView(title: "Exercise Time Goal", value: $healthInfo.exerciseMinutesGoal, systemImage: "dumbbell.fill", iconColor: .green)
+						goalInputView(title: "Stand Hours Goal", value: $healthInfo.standHoursGoal, systemImage: "figure.stand", iconColor: .cyan)
 					}
 					
 					Button(action: saveGoals) {
 						Text("Save Goals")
+							.font(.headline)
 							.foregroundColor(.white)
-							.fontWeight(.bold)
-							.padding(.vertical)
+							.padding()
 							.frame(maxWidth: .infinity)
-							.background(Color.blue)
+							.background(Color.green)
 							.cornerRadius(10)
 					}
 				}
+				.padding(.vertical)
 				.onAppear {
 					loadExistingData()
 				}
 			}
 			.navigationBarTitle("Set Your Goals", displayMode: .large)
-			.padding()
+			.padding(.horizontal)
+			.alert(isPresented: $showSaveAlert) {
+				Alert(title: Text("Save Goals"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+			}
 		}
 	}
 	
@@ -63,27 +63,45 @@ struct ActivityView: View {
 		return formatter
 	}
 	
-	private func goalInputView(title: String, value: Binding<Double>) -> some View {
-		HStack {
-			Text(title)
-				.font(.headline)
-				.frame(minWidth: 170, alignment: .leading)
+	private func goalInputView(title: String, value: Binding<Double>, systemImage: String, iconColor: Color) -> some View {
+		VStack(alignment: .leading, spacing: 8) {
+			HStack {
+				Image(systemName: systemImage)
+					.foregroundColor(iconColor)
+				Text(title)
+					.font(.headline)
+			}
 			
-			Spacer()
-			
-			TextField("", value: value, formatter: numberFormatter)
-				.padding(.horizontal)
-				.padding(.vertical, 4)
-				.frame(width: 80)
-				.background(Color(.systemGray6))
-				.cornerRadius(8)
-			
-			Stepper("", onIncrement: {
-				value.wrappedValue += 1
-			}, onDecrement: {
-				value.wrappedValue -= 1
-			})
+			HStack {
+				TextField("", value: nonNegativeBinding(for: value), formatter: numberFormatter)
+					.padding(.horizontal)
+					.padding(.vertical, 4)
+					.frame(minWidth: 50)
+					.background(Color(.systemGray6))
+					.cornerRadius(8)
+				
+				Stepper("", onIncrement: {
+					value.wrappedValue += 1
+				}, onDecrement: {
+					if value.wrappedValue > 0 {
+						value.wrappedValue -= 1
+					}
+				})
+				.labelsHidden()
+			}
 		}
+		.padding()
+		.background(Color(.systemGray5))
+		.cornerRadius(10)
+	}
+	
+	private func nonNegativeBinding(for value: Binding<Double>) -> Binding<Double> {
+		return Binding(
+			get: { max(0, value.wrappedValue) },
+			set: { newValue in
+				value.wrappedValue = max(0, newValue)
+			}
+		)
 	}
 	
 	private func loadExistingData() {
@@ -98,9 +116,11 @@ struct ActivityView: View {
 				modelContext.insert(healthInfo)
 			}
 			try modelContext.save()
+			alertMessage = "Goals saved successfully!"
 		} catch {
-			print("Failed to save goals: \(error)")
+			alertMessage = "Failed to save goals: \(error.localizedDescription)"
 		}
+		showSaveAlert = true
 	}
 }
 
