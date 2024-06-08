@@ -31,32 +31,37 @@ struct LaunchScreen: View {
 					ContentView()
 				}
 			} else {
-				VStack {
-					Spacer()
+				ZStack {
+					LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.6), Color.green.opacity(0.6)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+						.edgesIgnoringSafeArea(.all)
 					
 					VStack {
-						HStack (alignment: .center, spacing: 20.0) {
+						Spacer()
+						
+						VStack(spacing: 20) {
 							Image("Logo")
 								.resizable()
-								.aspectRatio(contentMode: .fit)
-								.frame(width: 100.0, height: 100.0)
-							
+								.aspectRatio(contentMode: .fill)
+								.frame(width: 150, height: 150)
+															
 							Text("SALUDIO")
-								.font(.system(size: 50))
+								.font(.system(size: 40))
 								.fontWeight(.heavy)
+								.foregroundColor(.primary)
+								.opacity(0.4)
 						}
+						.padding(.top, 60)
+						
+						Spacer()
+						
+						Text("Wellness Simplified")
+							.font(.title2)
+							.fontWeight(.medium)
+							.foregroundColor(.primary)
+							.padding(.bottom, 50)
+							.opacity(0.5)
 					}
-					.padding(.top, 50.0)
-					
-					Spacer()
-					
-					Text("Your Health Companion")
-						.font(.title)
-						.fontWeight(.bold)
-						.multilineTextAlignment(.center)
-						.padding(.bottom, 40)
 				}
-				.edgesIgnoringSafeArea(.all)
 				.onAppear {
 					DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 						withAnimation {
@@ -69,7 +74,6 @@ struct LaunchScreen: View {
 		}
 	}
 }
-
 
 struct LaunchScreen_Previews: PreviewProvider {
 	static var previews: some View {
