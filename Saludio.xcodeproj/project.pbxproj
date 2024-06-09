@@ -92,6 +92,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC1AA2032C14B3590082A71D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EC80B8322C0CDAFB00377618 /* HealthInfoModel.swift */,
+				EC66F0F12C11E894006B21FA /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EC1AA2042C14B36A0082A71D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EC80B8302C0CDAFB00377618 /* ContentView.swift */,
+				ECD091DF2C0D94E50030F4D5 /* HomeView.swift */,
+				ECD091E12C0D94F80030F4D5 /* ActivityView.swift */,
+				ECD091E32C0D95090030F4D5 /* SettingsView.swift */,
+				ECD091E52C0D999A0030F4D5 /* SummeryRingView.swift */,
+				EC66F0EB2C11E83C006B21FA /* LaunchScreen.swift */,
+				EC66F0ED2C11E850006B21FA /* IntroductionView.swift */,
+				EC66F0EF2C11E87C006B21FA /* OnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EC1AA2052C14B3790082A71D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ECD091DD2C0D91AE0030F4D5 /* HealthKitManager.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		EC80B8222C0CDAFB00377618 = {
 			isa = PBXGroup;
 			children = (
@@ -117,19 +149,11 @@
 			children = (
 				EC80B85A2C0CDCAE00377618 /* Saludio.entitlements */,
 				EC80B82E2C0CDAFB00377618 /* SaludioApp.swift */,
-				EC80B8302C0CDAFB00377618 /* ContentView.swift */,
-				EC80B8322C0CDAFB00377618 /* HealthInfoModel.swift */,
-				ECD091DD2C0D91AE0030F4D5 /* HealthKitManager.swift */,
-				ECD091DF2C0D94E50030F4D5 /* HomeView.swift */,
-				ECD091E12C0D94F80030F4D5 /* ActivityView.swift */,
-				ECD091E32C0D95090030F4D5 /* SettingsView.swift */,
-				ECD091E52C0D999A0030F4D5 /* SummeryRingView.swift */,
+				EC1AA2052C14B3790082A71D /* Controllers */,
+				EC1AA2042C14B36A0082A71D /* Views */,
+				EC1AA2032C14B3590082A71D /* Models */,
 				EC80B8342C0CDAFD00377618 /* Assets.xcassets */,
 				EC80B8362C0CDAFE00377618 /* Preview Content */,
-				EC66F0EB2C11E83C006B21FA /* LaunchScreen.swift */,
-				EC66F0ED2C11E850006B21FA /* IntroductionView.swift */,
-				EC66F0EF2C11E87C006B21FA /* OnboardingView.swift */,
-				EC66F0F12C11E894006B21FA /* UserModel.swift */,
 			);
 			path = Saludio;
 			sourceTree = "<group>";
