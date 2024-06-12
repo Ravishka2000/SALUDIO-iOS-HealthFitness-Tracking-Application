@@ -18,6 +18,8 @@ struct OnboardingView: View {
 	@State private var height: Double = 0.0
 	
 	@State private var isAgePickerVisible: Bool = false
+	@State private var showAlert: Bool = false
+	@State private var alertMessage: String = ""
 	
 	var body: some View {
 		ScrollView {
@@ -123,6 +125,9 @@ struct OnboardingView: View {
 		}
 		.background(Color(UIColor.systemBackground))
 		.foregroundColor(Color(UIColor.label))
+		.alert(isPresented: $showAlert) {
+			Alert(title: Text("Save Status"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+		}
 	}
 	
 	private func saveUserData() {
@@ -132,15 +137,21 @@ struct OnboardingView: View {
 		userModel.height = height
 		userModel.isFirstLaunch = false
 		
-		modelContext.insert(userModel)
-		try? modelContext.save()
-		
-		if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-			if let window = windowScene.windows.first {
-				window.rootViewController = UIHostingController(rootView: ContentView())
-				window.makeKeyAndVisible()
+		do {
+			modelContext.insert(userModel)
+			try modelContext.save()
+			alertMessage = "Data saved successfully!"
+			if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+				if let window = windowScene.windows.first {
+					window.rootViewController = UIHostingController(rootView: ContentView())
+					window.makeKeyAndVisible()
+				}
 			}
+		} catch {
+			alertMessage = "Failed to save data: \(error.localizedDescription)"
 		}
+		
+		showAlert = true
 	}
 	
 	private var decimalFormatter: NumberFormatter {

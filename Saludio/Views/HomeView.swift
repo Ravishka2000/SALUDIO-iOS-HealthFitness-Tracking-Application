@@ -53,9 +53,11 @@ struct HomeView: View {
 				HStack(alignment: .center) {
 					VStack(alignment: .leading) {
 						Text("\(formattedDate)")
+							.accessibilityIdentifier("dateText")
 						Text("Summary")
 							.font(.largeTitle)
 							.bold()
+							.accessibilityIdentifier("summaryText")
 					}
 					.padding()
 					
@@ -66,82 +68,26 @@ struct HomeView: View {
 						.frame(width: 60.0, height: 60.0)
 						.clipShape(Circle())
 						.padding()
+						.accessibilityIdentifier("profileImage")
 				}
 				
 				ScrollView {
-					VStack(alignment: .leading) {
+					VStack(alignment: .leading, spacing: 20) {
 						Text("Activity")
 							.font(.title)
 							.bold()
 							.padding()
+							.accessibilityIdentifier("activityText")
 						
-						// Summary Card
+						// Summary view
 						HStack {
 							VStack(alignment: .leading, spacing: 10) {
-								VStack(alignment: .leading, spacing: -5) {
-									Text("Move")
-										.font(.subheadline)
-										.foregroundColor(Color.primary)
-									Text(String(format: "%.1f", activeCalories))
-										.fontWeight(.bold)
-										.font(.title2)
-										.foregroundColor(Color("calories")) +
-									Text("/")
-										.fontWeight(.bold)
-										.font(.title2)
-										.foregroundColor(Color("calories")) +
-									Text(String(format: "%.1f", healthInfo.activeCaloriesGoal))
-										.fontWeight(.bold)
-										.font(.title2)
-										.foregroundColor(Color("calories")) +
-									Text("CAL")
-										.font(.footnote)
-										.fontWeight(.bold)
-										.foregroundColor(Color("calories"))
-								}
-								
-								VStack(alignment: .leading, spacing: -5) {
-									Text("Exercise")
-										.font(.subheadline)
-										.foregroundColor(Color.primary)
-									Text(String(format: "%.1f", exerciseMinutes))
-										.fontWeight(.bold)
-										.font(.title2)
-										.foregroundColor(Color("exercise")) +
-									Text("/")
-										.fontWeight(.bold)
-										.font(.title2)
-										.foregroundColor(Color("exercise")) +
-									Text(String(format: "%.1f", healthInfo.exerciseMinutesGoal))
-										.fontWeight(.bold)
-										.font(.title2)
-										.foregroundColor(Color("exercise")) +
-									Text("MIN")
-										.font(.footnote)
-										.fontWeight(.bold)
-										.foregroundColor(Color("exercise"))
-								}
-								VStack(alignment: .leading, spacing: -5) {
-									Text("Stand")
-										.font(.subheadline)
-										.foregroundColor(Color.primary)
-									Text(String(format: "%.1f", standHours))
-										.fontWeight(.bold)
-										.font(.title2)
-										.foregroundColor(Color("stand")) +
-									Text("/")
-										.fontWeight(.bold)
-										.font(.title2)
-										.foregroundColor(Color("stand")) +
-									Text(String(format: "%.1f", healthInfo.standHoursGoal))
-										.fontWeight(.bold)
-										.font(.title2)
-										.foregroundColor(Color("stand")) +
-									Text("HRS")
-										.font(.footnote)
-										.fontWeight(.bold)
-										.foregroundColor(Color("stand"))
-								}
+								MetricView(title: "Move", value: activeCalories, goal: healthInfo.activeCaloriesGoal, unit: "CAL", color: Color("calories"))
+									.accessibilityIdentifier("moveMetric")
+								MetricView(title: "Exercise", value: exerciseMinutes, goal: healthInfo.exerciseMinutesGoal, unit: "MIN", color: Color("exercise"))
+									.accessibilityIdentifier("exerciseMetric")
+								MetricView(title: "Stand", value: standHours, goal: healthInfo.standHoursGoal, unit: "HRS", color: Color("stand"))
+									.accessibilityIdentifier("standMetric")
 							}
 							
 							Spacer()
@@ -149,40 +95,28 @@ struct HomeView: View {
 							VStack {
 								ZStack {
 									SummeryRingView(icon: "arrow.up", BG: "stand", WHeight: 50, completionRate: completedStandingPercentage(), ringThickness: 20, colorGradient: Gradient(colors: [Color("stand"), Color("stand")]))
+										.accessibilityIdentifier("standRingView")
 									SummeryRingView(icon: "arrow.forward.to.line", BG: "exercise", WHeight: 100, completionRate: completedExercisePercentage(), ringThickness: 20, colorGradient: Gradient(colors: [Color("exercise"), Color("exercise")]))
+										.accessibilityIdentifier("exerciseRingView")
 									SummeryRingView(icon: "arrow.forward", BG: "calories", WHeight: 150, completionRate: burnedCaloriesPercentage(), ringThickness: 20, colorGradient: Gradient(colors: [Color("calories"), Color("calories")]))
+										.accessibilityIdentifier("caloriesRingView")
 								}
 								.padding()
 							}
 						}
 						.padding()
-						.background(.bg)
+						.background(Color("bg"))
 						.cornerRadius(15)
 						.shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
 						.padding(.horizontal)
 						
-						// New UI elements for additional data
 						VStack(alignment: .leading, spacing: 10) {
-							Group {
-								DataRowView(title: "Distance Walking/Running", value: distanceWalkingRunning, unit: "m")
-								DataRowView(title: "Walking Pace", value: walkingPace, unit: "m/s")
-								DataRowView(title: "Running Pace", value: runningPace, unit: "m/s")
-								DataRowView(title: "Resting Energy", value: restingEnergy, unit: "kcal")
-								DataRowView(title: "Flights Climbed", value: flightsClimbed, unit: "floors")
-								DataRowView(title: "Walking Steadiness", value: walkingSteadiness, unit: "%")
-								DataRowView(title: "Walking Speed", value: walkingSpeed, unit: "m/s")
-								DataRowView(title: "Walking Step Length", value: walkingStepLength, unit: "m")
-								DataRowView(title: "Heart Rate", value: heartRate, unit: "bpm")
-								DataRowView(title: "Mindfulness Minutes", value: mindfulnessMinutes, unit: "min")
-								DataRowView(title: "Water Intake", value: waterIntake, unit: "ml")
-								DataRowView(title: "Stand Hours", value: standHours, unit: "hrs")
+							ForEach(healthMetrics, id: \.title) { metric in
+								HealthMetricCard(metric: metric)
+									.accessibilityIdentifier("metricCard_\(metric.title.replacingOccurrences(of: " ", with: "_"))")
 							}
 						}
 						.padding()
-						.background(.bg)
-						.cornerRadius(15)
-						.shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
-						.padding(.horizontal)
 					}
 				}
 			}
@@ -206,9 +140,8 @@ struct HomeView: View {
 		.onChange(of: healthKitManager.walkingSpeed) { walkingSpeed = healthKitManager.walkingSpeed }
 		.onChange(of: healthKitManager.walkingStepLength) { walkingStepLength = healthKitManager.walkingStepLength }
 		.onChange(of: healthKitManager.heartRate) { heartRate = healthKitManager.heartRate }
-		
 	}
-		
+	
 	func completedStepPercentage() -> Double {
 		return (steps / healthInfo.stepGoal)
 	}
@@ -224,24 +157,83 @@ struct HomeView: View {
 	func completedStandingPercentage() -> Double {
 		return (standHours / healthInfo.standHoursGoal)
 	}
+	
+	private var healthMetrics: [(title: String, value: Double, unit: String, icon: String, color: Color)] {
+		return [
+			("Distance Walking/Running", distanceWalkingRunning, "m", "figure.walk", Color.purple),
+			("Walking Pace", walkingPace, "m/s", "speedometer", Color.green),
+			("Running Pace", runningPace, "m/s", "speedometer", Color.red),
+			("Resting Energy", restingEnergy, "kcal", "flame", Color.orange),
+			("Flights Climbed", flightsClimbed, "floors", "stairs", Color.blue),
+			("Walking Steadiness", walkingSteadiness, "%", "heart", Color.pink),
+			("Walking Speed", walkingSpeed, "m/s", "speedometer", Color.yellow),
+			("Walking Step Length", walkingStepLength, "m", "ruler", Color.cyan),
+			("Heart Rate", heartRate, "bpm", "heart.fill", Color.red),
+			("Mindfulness Minutes", mindfulnessMinutes, "min", "brain.head.profile", Color.teal),
+			("Water Intake", waterIntake, "ml", "drop", Color.blue),
+			("Stand Hours", standHours, "hrs", "timer", Color.purple)
+		]
+	}
 }
 
-struct DataRowView: View {
+struct MetricView: View {
 	var title: String
 	var value: Double
+	var goal: Double
 	var unit: String
+	var color: Color
+	
+	var body: some View {
+		VStack(alignment: .leading, spacing: -5) {
+			Text(title)
+				.font(.subheadline)
+				.foregroundColor(Color.primary)
+			Text(String(format: "%.1f", value))
+				.fontWeight(.bold)
+				.font(.title2)
+				.foregroundColor(color) +
+			Text("/")
+				.fontWeight(.bold)
+				.font(.title2)
+				.foregroundColor(color) +
+			Text(String(format: "%.1f", goal))
+				.fontWeight(.bold)
+				.font(.title2)
+				.foregroundColor(color) +
+			Text(unit)
+				.font(.footnote)
+				.fontWeight(.bold)
+				.foregroundColor(color)
+		}
+	}
+}
+
+struct HealthMetricCard: View {
+	var metric: (title: String, value: Double, unit: String, icon: String, color: Color)
 	
 	var body: some View {
 		HStack {
-			Text(title)
-				.font(.subheadline)
-				.foregroundColor(Color.gray)
+			Image(systemName: metric.icon)
+				.resizable()
+				.aspectRatio(contentMode: .fit)
+				.frame(width: 40, height: 40)
+				.foregroundColor(metric.color)
+				.padding(.trailing, 10)
+			VStack(alignment: .leading) {
+				Text(metric.title)
+					.font(.headline)
+					.foregroundColor(Color.primary)
+				Text(String(format: "%.1f", metric.value) + " " + metric.unit)
+					.fontWeight(.bold)
+					.font(.title2)
+					.foregroundColor(Color.primary)
+			}
 			Spacer()
-			Text(String(format: "%.1f", value) + " " + unit)
-				.fontWeight(.bold)
-				.font(.title2)
-				.foregroundColor(Color.primary)
 		}
+		.padding()
+		.background(Color("bg"))
+		.cornerRadius(15)
+		.shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
 	}
 }
 

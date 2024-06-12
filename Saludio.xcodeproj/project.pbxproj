@@ -17,13 +17,13 @@
 		EC80B8352C0CDAFD00377618 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC80B8342C0CDAFD00377618 /* Assets.xcassets */; };
 		EC80B8382C0CDAFE00377618 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC80B8372C0CDAFE00377618 /* Preview Assets.xcassets */; };
 		EC80B8422C0CDAFE00377618 /* SaludioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B8412C0CDAFE00377618 /* SaludioTests.swift */; };
-		EC80B84C2C0CDAFE00377618 /* SaludioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B84B2C0CDAFE00377618 /* SaludioUITests.swift */; };
-		EC80B84E2C0CDAFE00377618 /* SaludioUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B84D2C0CDAFE00377618 /* SaludioUITestsLaunchTests.swift */; };
 		ECD091DE2C0D91AE0030F4D5 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091DD2C0D91AE0030F4D5 /* HealthKitManager.swift */; };
 		ECD091E02C0D94E50030F4D5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091DF2C0D94E50030F4D5 /* HomeView.swift */; };
 		ECD091E22C0D94F80030F4D5 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091E12C0D94F80030F4D5 /* ActivityView.swift */; };
 		ECD091E42C0D95090030F4D5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091E32C0D95090030F4D5 /* SettingsView.swift */; };
 		ECD091E62C0D999A0030F4D5 /* SummeryRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD091E52C0D999A0030F4D5 /* SummeryRingView.swift */; };
+		ECD17E6D2C19986400A78D23 /* HomeViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD17E6C2C19986400A78D23 /* HomeViewTest.swift */; };
+		ECD17E6F2C19A18E00A78D23 /* SettingsViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD17E6E2C19A18E00A78D23 /* SettingsViewTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,14 +57,14 @@
 		EC80B83D2C0CDAFE00377618 /* SaludioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SaludioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC80B8412C0CDAFE00377618 /* SaludioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaludioTests.swift; sourceTree = "<group>"; };
 		EC80B8472C0CDAFE00377618 /* SaludioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SaludioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC80B84B2C0CDAFE00377618 /* SaludioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaludioUITests.swift; sourceTree = "<group>"; };
-		EC80B84D2C0CDAFE00377618 /* SaludioUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaludioUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EC80B85A2C0CDCAE00377618 /* Saludio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Saludio.entitlements; sourceTree = "<group>"; };
 		ECD091DD2C0D91AE0030F4D5 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		ECD091DF2C0D94E50030F4D5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		ECD091E12C0D94F80030F4D5 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		ECD091E32C0D95090030F4D5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		ECD091E52C0D999A0030F4D5 /* SummeryRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummeryRingView.swift; sourceTree = "<group>"; };
+		ECD17E6C2C19986400A78D23 /* HomeViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewTest.swift; sourceTree = "<group>"; };
+		ECD17E6E2C19A18E00A78D23 /* SettingsViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,8 +177,8 @@
 		EC80B84A2C0CDAFE00377618 /* SaludioUITests */ = {
 			isa = PBXGroup;
 			children = (
-				EC80B84B2C0CDAFE00377618 /* SaludioUITests.swift */,
-				EC80B84D2C0CDAFE00377618 /* SaludioUITestsLaunchTests.swift */,
+				ECD17E6C2C19986400A78D23 /* HomeViewTest.swift */,
+				ECD17E6E2C19A18E00A78D23 /* SettingsViewTest.swift */,
 			);
 			path = SaludioUITests;
 			sourceTree = "<group>";
@@ -246,6 +246,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
@@ -258,6 +261,7 @@
 					};
 					EC80B8462C0CDAFE00377618 = {
 						CreatedOnToolsVersion = 15.4;
+						LastSwiftMigration = 1540;
 						TestTargetID = EC80B82A2C0CDAFB00377618;
 					};
 				};
@@ -340,8 +344,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC80B84E2C0CDAFE00377618 /* SaludioUITestsLaunchTests.swift in Sources */,
-				EC80B84C2C0CDAFE00377618 /* SaludioUITests.swift in Sources */,
+				ECD17E6D2C19986400A78D23 /* HomeViewTest.swift in Sources */,
+				ECD17E6F2C19A18E00A78D23 /* SettingsViewTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +600,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DNA3KVJYXC;
@@ -604,6 +609,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.projects.SaludioUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Saludio;
@@ -614,6 +620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DNA3KVJYXC;

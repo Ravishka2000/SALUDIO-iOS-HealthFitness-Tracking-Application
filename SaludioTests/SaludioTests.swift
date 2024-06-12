@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import HealthKit
+
 @testable import Saludio
 
 final class SaludioTests: XCTestCase {
@@ -34,3 +36,6 @@ final class SaludioTests: XCTestCase {
     }
 
 }
+
+
+

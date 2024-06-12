@@ -20,6 +20,15 @@ class HealthKitManager: ObservableObject {
 	@Published var walkingStepLength: Double = 0.0
 	@Published var sleepAnalysis: [HKCategorySample] = []
 	@Published var heartRate: Double = 0.0
+	@Published var weeklySteps: [Double] = Array(repeating: 0.0, count: 7)
+	@Published var weeklyWaterIntake: [Double] = Array(repeating: 0.0, count: 7)
+	@Published var weeklyExerciseMinutes: [Double] = Array(repeating: 0.0, count: 7)
+	@Published var weeklyStandHours: [Double] = Array(repeating: 0.0, count: 7)
+	@Published var weeklyActiveCalories: [Double] = Array(repeating: 0.0, count: 7)
+	
+	init(healthStore: HKHealthStore = HKHealthStore()) {
+		self.healthStore = healthStore
+	}
 	
 	func requestAuthorization() {
 		let readTypes = Set([
@@ -42,6 +51,11 @@ class HealthKitManager: ObservableObject {
 		
 		healthStore.requestAuthorization(toShare: [], read: readTypes) { (success, error) in
 			if success {
+				self.fetchWeeklyStepCounts()
+				self.fetchWeeklyWaterIntake()
+				self.fetchWeeklyExerciseMinutes()
+				self.fetchWeeklyStandHours()
+				self.fetchWeeklyActiveCalories()
 				self.fetchData(for: .stepCount)
 				self.fetchData(for: .mindfulSession)
 				self.fetchData(for: .dietaryWater)
@@ -134,4 +148,66 @@ class HealthKitManager: ObservableObject {
 		}
 		healthStore.execute(query)
 	}
+	
+	func fetchWeeklyStepCounts() {
+		fetchWeeklyData(for: .stepCount, unit: HKUnit.count(), updateHandler: { self.weeklySteps = $0 })
+	}
+	
+	func fetchWeeklyWaterIntake() {
+		fetchWeeklyData(for: .dietaryWater, unit: HKUnit.literUnit(with: .milli), updateHandler: { self.weeklyWaterIntake = $0 })
+	}
+	
+	func fetchWeeklyExerciseMinutes() {
+		fetchWeeklyData(for: .appleExerciseTime, unit: HKUnit.minute(), updateHandler: { self.weeklyExerciseMinutes = $0 })
+	}
+	
+	func fetchWeeklyStandHours() {
+		fetchWeeklyData(for: .appleStandTime, unit: HKUnit.hour(), updateHandler: { self.weeklyStandHours = $0 })
+	}
+	
+	func fetchWeeklyActiveCalories() {
+		fetchWeeklyData(for: .activeEnergyBurned, unit: HKUnit.kilocalorie(), updateHandler: { self.weeklyActiveCalories = $0 })
+	}
+
+	private func fetchWeeklyData(for identifier: HKQuantityTypeIdentifier, unit: HKUnit, updateHandler: @escaping ([Double]) -> Void) {
+		guard let quantityType = HKQuantityType.quantityType(forIdentifier: identifier) else {
+			print("Failed to create quantity type for identifier: \(identifier)")
+			return
+		}
+		
+		var dailyValues: [Double] = Array(repeating: 0.0, count: 7)
+		let calendar = Calendar.current
+		
+		let now = Date()
+		guard let startDate = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: now)) else {
+			print("Failed to calculate start date")
+			return
+		}
+		let endDate = now
+		let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
+		
+		let interval = DateComponents(day: 1)
+		let query = HKStatisticsCollectionQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: .cumulativeSum, anchorDate: startDate, intervalComponents: interval)
+		
+		query.initialResultsHandler = { query, results, error in
+			if error != nil {
+				return
+			}
+			guard let results = results else {
+				return
+			}
+			results.enumerateStatistics(from: startDate, to: endDate) { (statistics, stop) in
+				let date = statistics.startDate
+				let dayIndex = calendar.component(.weekday, from: date) - 1
+				let value = statistics.sumQuantity()?.doubleValue(for: unit) ?? 0.0
+				dailyValues[dayIndex] = value
+			}
+			DispatchQueue.main.async {
+				updateHandler(dailyValues)
+			}
+		}
+		
+		healthStore.execute(query)
+	}
+
 }

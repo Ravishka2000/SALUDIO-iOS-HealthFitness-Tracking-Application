@@ -49,6 +49,7 @@ struct LaunchScreen: View {
 								.fontWeight(.heavy)
 								.foregroundColor(.primary)
 								.opacity(0.4)
+								.accessibilityIdentifier("saludio")
 						}
 						.padding(.top, 60)
 						
@@ -63,7 +64,7 @@ struct LaunchScreen: View {
 					}
 				}
 				.onAppear {
-					DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 						withAnimation {
 							loadExistingData()
 							self.isActive = true
